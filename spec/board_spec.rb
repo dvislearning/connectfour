@@ -121,24 +121,25 @@ describe 'Board' do
 		end								
 	end
 
-	describe '#right_winner?' do
-		it 'returns false if column of last piece entered is in column 3 or more' do
+	describe '#right_winner?' do 
+		it 'returns false if column of last piece entered is in column 4 or more', :right => true do
 			expect(@board.right_winner?("X", 5)).to be(false)
 		end
 
-		it 'returns false when a row contains less than 4 tokens' do
+		it 'returns false when a row contains less than 4 tokens', :right => true do
 			2.upto(4) {|number| @board.place_token("X", number)}			
 			expect(@board.right_winner?("X", 2)).to be(false)
 		end
 
-		it 'returns false when there are four tokens along a row of differing marks' do
+		it 'returns false when there are four tokens along a row of differing marks', :right => true do
 			2.upto(4) {|number| @board.place_token("X", number)}
 			@board.place_token("O", 5)			
 			expect(@board.right_winner?("X", 2)).to be(false)
 		end
-		it 'returns true when there are four tokens along a row of the same mark' do
-			2.upto(5) {|number| @board.place_token("X", number)}			
-			expect(@board.right_winner?("X", 3)).to be(true)
+		it 'returns true when there are four tokens along a row of the same mark', :right => true do
+			2.upto(5) {|number| @board.place_token("X", number)}
+			@board.display_board		
+			expect(@board.right_winner?("X", 2)).to be(true)
 		end								
 	end	
 end
