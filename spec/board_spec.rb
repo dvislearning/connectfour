@@ -137,9 +137,73 @@ describe 'Board' do
 			expect(@board.right_winner?("X", 2)).to be(false)
 		end
 		it 'returns true when there are four tokens along a row of the same mark', :right => true do
-			2.upto(5) {|number| @board.place_token("X", number)}
-			@board.display_board		
+			2.upto(5) {|number| @board.place_token("X", number)}	
 			expect(@board.right_winner?("X", 2)).to be(true)
-		end								
+		end						
+	end	
+
+	describe '#down_left_winner?' do 
+		it 'returns false if column of last piece entered is in column 2 or less', :downleft => true do
+			expect(@board.down_left_winner?("X", 2)).to be(false)
+		end
+
+		it 'returns false when a diagonal contains less than 4 tokens', :downleft => true do
+			@board.place_token("X", 3)
+			2.times {@board.place_token("X", 4)}
+			3.times {@board.place_token("X", 5)}		
+			expect(@board.down_left_winner?("X", 5)).to be(false)
+		end
+
+		it 'returns false when there are four tokens along a row of differing marks', :downleft => true do
+			@board.place_token("X", 2)
+			2.times {@board.place_token("X", 3)}
+			3.times {@board.place_token("O", 4)}
+			4.times {@board.place_token("X", 5)}				
+			expect(@board.down_left_winner?("X", 5)).to be(false)
+		end
+		it 'returns true when there are four tokens along a row of the same mark', :downleft => true do
+			@board.place_token("X", 2)
+			2.times {@board.place_token("X", 3)}
+			3.times {@board.place_token("X", 4)}
+			4.times {@board.place_token("X", 5)}	
+			expect(@board.down_left_winner?("X", 5)).to be(true)
+		end	
+	end
+
+	describe '#down_right_winner?' do 
+		it 'returns false if column of last piece entered is in column 4 or more', :downright => true do
+			expect(@board.down_right_winner?("X", 5)).to be(false)
+		end
+
+		it 'returns false when a diagonal contains less than 4 tokens', :downright => true do
+			3.times {@board.place_token("X", 3)}
+			2.times {@board.place_token("X", 4)}
+			@board.place_token("X", 5)	
+			expect(@board.down_right_winner?("X", 3)).to be(false)
+		end
+
+		it 'returns false when there are four tokens along a row of differing marks', :downright => true do
+			4.times {@board.place_token("X", 3)}
+			3.times {@board.place_token("O", 4)}
+			2.times {@board.place_token("X", 5)}
+			@board.place_token("X", 2)			
+			expect(@board.down_right_winner?("X", 5)).to be(false)
+		end
+
+		it 'returns true when there are four tokens along a row of the same mark', :downright => true do
+			4.times {@board.place_token("X", 2)}
+			3.times {@board.place_token("X", 3)}
+			2.times {@board.place_token("X", 4)}
+			@board.place_token("X", 5)
+			expect(@board.down_right_winner?("X", 2)).to be(true)
+		end
+
+		it 'returns true when there are four tokens along a starting in a high row ', :downright => true do
+			6.times {@board.place_token("X", 2)}
+			5.times {@board.place_token("X", 3)}
+			4.times {@board.place_token("X", 4)}
+			3.times {@board.place_token("X", 5)}
+			expect(@board.down_right_winner?("X", 2)).to be(true)
+		end			
 	end	
 end

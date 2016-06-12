@@ -66,7 +66,23 @@ class Board
 		  	temp_array << state[position][last_row] unless position > 6
 		 end
 		 temp_array.all? { |elements| (elements == mark) && (temp_array.length == 4)}                                             
-	end			
+	end
+
+	def down_left_winner?(mark, column)
+		return false if column <= 2
+		 temp_array = []
+		 last_row = (state[column].length) -1 
+		 0.upto(3) { |num| temp_array << state[column - num][last_row - num]}
+		 temp_array.all? { |elements| (elements == mark) && (temp_array.length == 4)}                                             
+	end	
+
+	def down_right_winner?(mark, column)
+		return false if column >= 4
+		 temp_array = []
+		 last_row = (state[column].length) -1 
+		 0.upto(3) { |num| temp_array << state[column + num][last_row - num]}
+		 temp_array.all? { |elements| (elements == mark) && (temp_array.length == 4)}                                             
+	end					
 end
 
 # a = Board.new
@@ -80,7 +96,17 @@ end
 # puts a.left_winner?("X", 4)
 
 # a = Board.new
-# 2.upto(4) {|number| a.place_token("X", number)}
-# a.place_token("O", 5)
+# 4.times {a.place_token("X", 2)}
+# 3.times {a.place_token("X", 3)}
+# 2.times {a.place_token("X", 4)}
+# a.place_token("X", 5)
 # a.display_board
-# a.right_winner?("X", 2)
+# puts a.down_right_winner?("X", 2).inspect
+
+# a = Board.new
+# a.place_token("X", 0)
+# 2.times {a.place_token("X", 1)}
+# 3.times {a.place_token("X", 2)}
+# 4.times {a.place_token("X", 3)}
+# a.place_token("N", 3)
+# puts a.down_left_winner?("mark", 3).inspect
