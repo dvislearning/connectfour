@@ -7,7 +7,6 @@ describe 'Board' do
 	end
 
 	describe '#initialize' do
-
 		it 'creates an instance of Board when initiated' do
 			expect(@board).to be_an_instance_of(Board)
 		end
@@ -19,7 +18,6 @@ describe 'Board' do
 	end
 
 	describe '#column_available?' do
-
 		it 'returns true if a column 3 has less than six rows' do
 			expect(@board.column_available?(3)).to eq(true)
 		end
@@ -47,13 +45,10 @@ describe 'Board' do
 	end	
 
 	describe '#draw?' do
-		it 'does not declare a draw when board is not full' do
-			@board.place_token("\u{2605}", 2)
-			@board.place_token("\u{2605}", 2)
-			@board.place_token("\u{2605}", 2)
-			@board.place_token("\u{2606}", 2)
-			@board.place_token("\u{2605}", 2)
-			@board.place_token("\u{2605}", 2)
+		it 'does not declare a draw when board is not full' do			
+			6.times do
+				@board.place_token("\u{2605}", 2)
+			end
 			expect(@board.draw?).to be(false)
 		end
 
@@ -206,4 +201,18 @@ describe 'Board' do
 			expect(@board.down_right_winner?("\u{2605}", 2)).to be(true)
 		end			
 	end	
+	describe "#winner?" do
+		it "returns true when #right_winner? returns true" do
+			allow(@board).to receive(:right_winner?) {true}
+			expect(@board.winner?("X", 3)).to be(true)
+		end
+		it "returns false when all methods inside it returns false" do
+			allow(@board).to receive(:down_winner?) {false}
+			allow(@board).to receive(:left_winner?) {false}
+			allow(@board).to receive(:right_winner?) {false}
+			allow(@board).to receive(:down_right_winner?) {false}
+			allow(@board).to receive(:down_left_winner?) {false}
+			expect(@board.winner?("X", 3)).to be(false)
+		end		
+	end 
 end
