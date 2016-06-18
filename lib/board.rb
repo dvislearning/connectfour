@@ -86,27 +86,27 @@ class Board
 end
 
 # a = Board.new
-# a.place_token("X", 1)
-# a.place_token("X", 2)
-# a.place_token("O", 3)
-# a.place_token("X", 4)
-# # a.place_token("X", 2)
-# # a.place_token("X", 2)
-# # a.place_token("X", 2)
-# puts a.left_winner?("X", 4)
+# a.place_token("\u{2605}", 1)
+# a.place_token("\u{2605}", 2)
+# a.place_token("\u{2606}", 3)
+# a.place_token("\u{2605}", 4)
+# # a.place_token("\u{2605}", 2)
+# # a.place_token("\u{2605}", 2)
+# # a.place_token("\u{2605}", 2)
+# puts a.left_winner?("\u{2605}", 4)
 
 # a = Board.new
-# 4.times {a.place_token("X", 2)}
-# 3.times {a.place_token("X", 3)}
-# 2.times {a.place_token("X", 4)}
-# a.place_token("X", 5)
+# 4.times {a.place_token("\u{2605}", 2)}
+# 3.times {a.place_token("\u{2605}", 3)}
+# 2.times {a.place_token("\u{2605}", 4)}
+# a.place_token("\u{2605}", 5)
 # a.display_board
-# puts a.down_right_winner?("X", 2).inspect
+# puts a.down_right_winner?("\u{2605}", 2).inspect
 
 # a = Board.new
-# a.place_token("X", 0)
-# 2.times {a.place_token("X", 1)}
-# 3.times {a.place_token("X", 2)}
-# 4.times {a.place_token("X", 3)}
+# a.place_token("\u{2605}", 0)
+# 2.times {a.place_token("\u{2605}", 1)}
+# 3.times {a.place_token("\u{2605}", 2)}
+# 4.times {a.place_token("\u{2605}", 3)}
 # a.place_token("N", 3)
 # puts a.down_left_winner?("mark", 3).inspect

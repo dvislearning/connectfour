@@ -2,14 +2,10 @@ require 'stringio'
 
 
 class Player
-	attr_accessor :name
-	def initialize
-		@name = get_name
-	end
-
-	def get_name
-		puts "Please enter your name: "
-		$stdin.gets.chomp
+	attr_accessor :name, :mark
+	def initialize(name, mark)
+		@name = name
+		@mark = mark
 	end
 end
 
