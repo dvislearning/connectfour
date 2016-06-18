@@ -84,3 +84,32 @@ class Board
 		 temp_array.all? { |elements| (elements == mark) && (temp_array.length == 4)}                                             
 	end					
 end
+<<<<<<< HEAD
+=======
+
+# a = Board.new
+# a.place_token("\u{2605}", 1)
+# a.place_token("\u{2605}", 2)
+# a.place_token("\u{2606}", 3)
+# a.place_token("\u{2605}", 4)
+# # a.place_token("\u{2605}", 2)
+# # a.place_token("\u{2605}", 2)
+# # a.place_token("\u{2605}", 2)
+# puts a.left_winner?("\u{2605}", 4)
+
+# a = Board.new
+# 4.times {a.place_token("\u{2605}", 2)}
+# 3.times {a.place_token("\u{2605}", 3)}
+# 2.times {a.place_token("\u{2605}", 4)}
+# a.place_token("\u{2605}", 5)
+# a.display_board
+# puts a.down_right_winner?("\u{2605}", 2).inspect
+
+# a = Board.new
+# a.place_token("\u{2605}", 0)
+# 2.times {a.place_token("\u{2605}", 1)}
+# 3.times {a.place_token("\u{2605}", 2)}
+# 4.times {a.place_token("\u{2605}", 3)}
+# a.place_token("N", 3)
+# puts a.down_left_winner?("mark", 3).inspect
+>>>>>>> writing
